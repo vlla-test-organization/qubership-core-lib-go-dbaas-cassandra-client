@@ -26,7 +26,20 @@ To get cassandra dbaas client do:
 
 ## Usage
 
-At first user should create `DbaaSCassandraClient`. This is a base client, which allows working with tenant and service databases.
+At first, it's necessary to register security implemention - dummy or your own, the followning example shows registration of required services:
+```go
+import (
+	"github.com/netcracker/qubership-core-lib-go/v3/serviceloader"
+	"github.com/netcracker/qubership-core-lib-go/v3/security"
+)
+
+func init() {
+	serviceloader.Register(1, &security.DummyToken{})
+	serviceloader.Register(1, &security.TenantContextObject{})
+}
+```
+
+Then the user should create `DbaaSCassandraClient`. This is a base client, which allows working with tenant and service databases.
 To create instance of `DbaaSCassandraClient` use `NewClient(pool *dbaasbase.DbaaSPool) *DbaaSCassandraClient`.
 
 Note that client has parameter _pool_. `dbaasbase.DbaaSPool` is a tool which stores all cached connections and

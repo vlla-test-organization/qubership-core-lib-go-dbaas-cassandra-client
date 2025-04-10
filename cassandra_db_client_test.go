@@ -14,6 +14,8 @@ import (
 	"github.com/docker/go-connections/nat"
 	"github.com/gocql/gocql"
 	"github.com/netcracker/qubership-core-lib-go/v3/configloader"
+	"github.com/netcracker/qubership-core-lib-go/v3/serviceloader"
+	"github.com/netcracker/qubership-core-lib-go/v3/security"
 	dbaasbase "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3"
 	basemodel "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/model"
 	"github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/model/rest"
@@ -51,6 +53,9 @@ type DatabaseClientTestSuite struct {
 }
 
 func (suite *DatabaseClientTestSuite) SetupSuite() {
+	serviceloader.Register(1, &security.DummyToken{})
+	serviceloader.Register(1, &security.TenantContextObject{})
+	
 	StartMockServer()
 	os.Setenv(dbaasAgentUrlProperty, GetMockServerUrl())
 
