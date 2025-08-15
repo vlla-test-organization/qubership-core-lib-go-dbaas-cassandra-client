@@ -6,17 +6,17 @@ import (
 	"time"
 
 	"github.com/gocql/gocql"
-	"github.com/netcracker/qubership-core-lib-go/v3/configloader"
-	dbaasbase "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3"
-	. "github.com/netcracker/qubership-core-lib-go-dbaas-base-client/v3/testutils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
+	dbaasbase "github.com/vlla-test-organization/qubership-core-lib-go-dbaas-base-client/v3"
+	. "github.com/vlla-test-organization/qubership-core-lib-go-dbaas-base-client/v3/testutils"
+	"github.com/vlla-test-organization/qubership-core-lib-go/v3/configloader"
 )
 
 const (
-	dbaasAgentUrlProperty    = "dbaas.agent"
-	testToken                = "test-token"
-	testTokenExpiresIn       = 300
+	dbaasAgentUrlProperty = "dbaas.agent"
+	testToken             = "test-token"
+	testTokenExpiresIn    = 300
 )
 
 var (
